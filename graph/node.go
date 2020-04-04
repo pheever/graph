@@ -7,8 +7,21 @@ import (
 
 //Node represents a graph node
 type Node struct {
+	data  interface{}
 	graph *Graph
 	edges map[*Node]*Edge
+}
+
+//NewNode creates a new node
+func NewNode(data interface{}) *Node {
+	return &Node{
+		data: &data,
+	}
+}
+
+//Data of the node
+func (n *Node) Data() interface{} {
+	return n.data
 }
 
 func (n *Node) addEdge(e *Node, weight float64) error {

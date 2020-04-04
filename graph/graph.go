@@ -35,10 +35,11 @@ func (g *Graph) AddNode(n *Node) {
 	if g.nodes == nil {
 		g.nodes = make(map[*Node]bool)
 	}
-	n.graph = g
-	if _, isInGraph := g.nodes[n]; !isInGraph {
-		g.nodes[n] = false
+	if _, isInGraph := g.nodes[n]; isInGraph {
+		return
 	}
+	n.graph = g
+	g.nodes[n] = false
 }
 
 //AddEdgeDefaultWeight from node a to node b, and vise versa if the graph is undirected with default weight 1
