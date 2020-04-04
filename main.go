@@ -14,7 +14,22 @@ func panicIfErr(err error) {
 
 func main() {
 	fmt.Println("hello graph")
+	loadTest()
+}
 
+func loadTest() {
+	g, e := graph.LoadGraph("test-graphs/graph1.csv")
+	if e != nil {
+		fmt.Println("failed to load graph ", e.Error())
+		return
+	}
+	fmt.Println("graph loaded")
+	fmt.Println("total nodes", len(g.Nodes()))
+	a, _ := g.Nodes()[0].Dijkstra(nil)
+	fmt.Println(a)
+}
+
+func gtest() {
 	g := &graph.Graph{}
 	nodes := []*graph.Node{
 		&graph.Node{}, //0 f
